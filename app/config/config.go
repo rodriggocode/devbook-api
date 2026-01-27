@@ -24,7 +24,7 @@ var (
 func LoadConfig() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Erro ao carregar .env file")
+		log.Println("Aviso: .env não encontrado, usando variáveis de ambiente do Render")
 	}
 
 	Port, err = strconv.Atoi(os.Getenv("API_PORT"))
