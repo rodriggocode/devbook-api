@@ -1,0 +1,20 @@
+meta {
+  name: post_ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:5000/publicacao/5/publicacao
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk1NDI1MTgsImlkX3VzZXIiOjJ9.KpsS0pnSMiurWINv9BsRLILHYzRyWClUqn4Y1xHj5NQ
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

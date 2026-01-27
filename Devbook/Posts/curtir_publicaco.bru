@@ -1,0 +1,20 @@
+meta {
+  name: curtir_publicaco
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:5000/publicacoes/20/curtir
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk1NDMzNzQsImlkX3VzZXIiOjV9.RpO66yURLsMXQXNzg-FCxvdgQD-pn0E_T8GrJfG12p4
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

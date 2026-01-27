@@ -1,0 +1,20 @@
+meta {
+  name: getall_posts_user
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:5000/publicacao/5/usuarios
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk1NDMzNzQsImlkX3VzZXIiOjV9.RpO66yURLsMXQXNzg-FCxvdgQD-pn0E_T8GrJfG12p4
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

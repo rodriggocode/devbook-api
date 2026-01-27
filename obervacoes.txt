@@ -1,0 +1,122 @@
+func (repo Usersrepository) CreateUser(user entity.UsersEntity) (uint64, error) {
+	var id_user uint64  // obs: esse valor ele ta vindo como parametro de retorno e ta tabem dentro da minha entity, ele nao aceita numeros negativo, melhor usar ele que int, e quando to usando slq nao preciso passar esse valor aqui
+	statement, err := repo.db.Prepare("insert into users(user_name, nick, email, password) values ($1, $2, $3, $4) RETURNING id_user") // outra observacao quando estiver usando sql, eu nao preciso desse returning ida tabela
+	if err != nil {
+		fmt.Println(err)
+		return 0, err
+	}
+
+	err = statement.QueryRow(user.Nome, user.Nick, user.Email, user.Password).Scan(&id_user)
+	if err != nil {
+		return 0, err
+	}
+
+		// result, err := statement.Exec(user.Nome, user.Nick, user.Email, user.Password) so funciona com mysql e tem mais agulmas outra coisas quw tem que mudar aqui
+
+	/* esse trecho de codigo, so funciona com banco que tem primray key auto_increment: mysq
+	ultimoIDInsert, err := result.LastInsertId()
+	if err != nil {
+		return 0, err
+	}
+	*/
+	defer statement.Close()
+
+	return uint64(id_user), nil
+}
+
+
+outra coisa que tenho que me atentar, e relacionado as ordens que tem que ser passado no arquivo de configuracao do banco
+com relacao ao arquivo .env
+    - StringConnectDatabase = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+    os.Getenv("DB_USER"),     // certo
+    os.Getenv("DB_PASSWORD"), // certo
+    os.Getenv("DB_NAME"),     // ❌ aqui deveria ser DB_HOST
+    os.Getenv("DB_HOST"),     // ❌ aqui deveria ser DB_PORT
+    os.Getenv("DB_PORT"),     // ❌ aqui deveria ser DB_NAME
+)
+
+OUTRA COISA QUE TENHO QUER FICAR LIGEIRO, E A FORMA DE PASSAR OS VALUES NA HORA DA QUERY DE INSERT, TEM DIFERENCA ENTRE MYSQL E POSTGRES
+    - tatement, err := repo.db.Prepare("insert into users(user_name, nick, email, password) values (?, ?, ?, ?)")
+    - no mysql ele aceita (?) no postgre tem que ser ($1)
+
+func GetUser(w http.ResponseWriter, r *http.Request) {
+    nickName := strings.ToLower(r.URL.Query().Get("usuario"))
+    // aqui depois da rota eu vou passar o usuario http://localhost:5000/usuarios?usuario=rodrigo
+    ainda nao tinha me tocado, mas essa r.URL.QUERY().GET(). aqui e o paramentro que eu passo na URL
+    aqui eu to passando usuario
+}
+func (repository GetUserReposistory) GetAll(nameOrNick string) ([]entity.UsersEntity, error) {
+	nameOrNick = fmt.Sprintf("%%%%%s", nameOrNick) // esses %% sao para escate(deixar escapar %nameOrNick%
+	rows, erro := repository.db.Query(
+		"SELECT id_user, user_name, nick, email, created_at, upated_at FROM users where user_name LIKE $1 OR nick LIKE $2",
+		nameOrNick, nameOrNick,
+	)
+	if erro != nil {
+		return nil, erro
+	}
+	defer rows.Close()
+
+	var users []entity.UsersEntity
+	for rows.Next() {
+		var user entity.UsersEntity
+		if erro = rows.Scan(
+			&user.ID,
+			&user.Nome,
+			&user.Nick,
+			&user.Email,
+			&user.Created_at,
+			&user.Updated_at,
+		); erro != nil {
+			return nil, erro
+		}
+		users = append(users, user)
+	}
+	return users, nil
+}
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	paramID := r.URL.Query().Get("id")
+	userID, erro := strconv.Atoi(paramID)
+
+	if erro != nil {
+		respostas.RespostaError(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	body, erro := ioutil.ReadAll(r.Body)
+	if erro != nil {
+		respostas.RespostaError(w, http.StatusUnprocessableEntity, erro)
+		return
+	}
+
+	var users entity.UsersEntity
+	if erro = json.Unmarshal(body, &users); erro != nil {
+		respostas.RespostaError(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	// tem esse parametro, por conta de umas mudancas la na entity
+	if erro = users.Preparar("edit"); erro != nil {
+		respostas.RespostaError(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	db, erro := database.Connection()
+	if erro != nil {
+		respostas.RespostaError(w, http.StatusInternalServerError, erro)
+		return
+	}
+	defer db.Close()
+
+	repository := repository.UpdatedUser(db)
+
+	if erro = repository.UpatedUser(userID, users); erro != nil {
+		respostas.RespostaError(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	respostas.JSON(w, http.StatusNoContent, repository)
+
+}
+
+### JWT
+    go get github.com/dgrijalva/jwt-go

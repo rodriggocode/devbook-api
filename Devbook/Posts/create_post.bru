@@ -1,0 +1,27 @@
+meta {
+  name: create_post
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:5000/publicacao/criar
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk0ODY1MDIsImlkX3VzZXIiOjJ9.rti8gvoC52IrJqEa-pEXeQdTAPxL_ToG-8e62WCNggI
+}
+
+body:json {
+  {
+    "title": "publicacao01",
+    "content": "my frist post here"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

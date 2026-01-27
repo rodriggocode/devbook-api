@@ -1,0 +1,27 @@
+meta {
+  name: login
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:5000/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+   "email": "user04@email.com.br",
+    "password": "123456"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

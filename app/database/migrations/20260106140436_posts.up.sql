@@ -1,0 +1,13 @@
+
+CREATE TABLE posts(
+	id_posts SERIAL PRIMARY KEY,
+	title VARCHAR(20) NOT NULL,
+	content VARCHAR(300) NOT NULL,
+	author_id INT NOT NULL,
+	author_nick VARCHAR(255) NOT NULL,
+	like_posts INT DEFAULT 0,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+	FOREIGN KEY(author_id) REFERENCES users(id_user) ON DELETE CASCADE
+	
+);

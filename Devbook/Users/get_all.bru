@@ -1,0 +1,20 @@
+meta {
+  name: get_all
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:5000/usuarios
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk0NTkwNDcsImlkX3VzZXIiOjV9.5jlQxUqj5xgWD1Oc2TQQEL1b_3wJs347F6H_h9vyIhc
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

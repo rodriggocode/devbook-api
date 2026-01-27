@@ -1,0 +1,27 @@
+meta {
+  name: delete_poste
+  type: http
+  seq: 5
+}
+
+delete {
+  url: http://localhost:5000/publicacao/9/excluir
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3Njk0NTkwNDcsImlkX3VzZXIiOjV9.5jlQxUqj5xgWD1Oc2TQQEL1b_3wJs347F6H_h9vyIhc
+}
+
+body:json {
+  {
+    "email": "user04@email.com.br",
+    "password": "123456"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

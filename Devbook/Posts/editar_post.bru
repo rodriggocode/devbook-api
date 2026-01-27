@@ -1,0 +1,27 @@
+meta {
+  name: editar_post
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:5000/publicacao/3/editar
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3NjkzMDczODEsImlkX3VzZXIiOjN9.z27N3gJyg56f03xvxadFO-q0YAeaQY97pQqn_FzwMPc
+}
+
+body:json {
+  {
+    "title": "post one",
+    "content": "estou editando esse post"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
