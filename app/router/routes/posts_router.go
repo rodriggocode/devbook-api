@@ -1,8 +1,8 @@
 package routes
 
 import (
-	handlers "api-web/app/handlers/posts"
-	"api-web/app/middlewares"
+	handlers "devbook-api/app/handlers/posts"
+	"devbook-api/app/middlewares"
 	"net/http"
 )
 

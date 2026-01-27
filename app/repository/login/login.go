@@ -1,8 +1,8 @@
 package login
 
 import (
-	"api-web/app/entity"
 	"database/sql"
+	"devbook-api/app/entity"
 )
 
 type LoginRepository struct {

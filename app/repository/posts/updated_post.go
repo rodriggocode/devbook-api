@@ -1,8 +1,8 @@
 package posts
 
 import (
-	"api-web/app/entity"
 	"database/sql"
+	"devbook-api/app/entity"
 )
 
 // UpdatedPostRepository é um repositório para atualizar posts

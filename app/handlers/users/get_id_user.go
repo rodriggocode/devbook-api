@@ -1,9 +1,9 @@
 package users
 
 import (
-	"api-web/app/database"
-	repository "api-web/app/repository/users"
-	"api-web/app/respostas"
+	"devbook-api/app/database"
+	repository "devbook-api/app/repository/users"
+	"devbook-api/app/respostas"
 	"net/http"
 	"strconv"
 )

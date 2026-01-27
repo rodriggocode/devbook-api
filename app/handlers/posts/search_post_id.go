@@ -1,9 +1,9 @@
 package posts
 
 import (
-	"api-web/app/database"
-	repository "api-web/app/repository/posts"
-	"api-web/app/respostas"
+	"devbook-api/app/database"
+	repository "devbook-api/app/repository/posts"
+	"devbook-api/app/respostas"
 	"net/http"
 	"strconv"
 )

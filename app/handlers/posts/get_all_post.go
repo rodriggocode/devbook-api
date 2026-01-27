@@ -1,11 +1,11 @@
 package posts
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	"api-web/app/respostas"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	repository "devbook-api/app/repository/posts"
+	"devbook-api/app/respostas"
 	"net/http"
-	repository "api-web/app/repository/posts"
 )
 
 func GetAllPosts(w http.ResponseWriter, req *http.Request) {

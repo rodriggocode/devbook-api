@@ -1,8 +1,8 @@
 package database
 
 import (
-	"api-web/app/config"
 	"database/sql"
+	"devbook-api/app/config"
 
 	_ "github.com/lib/pq"
 )

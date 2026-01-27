@@ -1,11 +1,11 @@
 package posts
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	"api-web/app/entity"
-	repository "api-web/app/repository/posts"
-	"api-web/app/respostas"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	"devbook-api/app/entity"
+	repository "devbook-api/app/repository/posts"
+	"devbook-api/app/respostas"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -32,9 +32,9 @@ func CreatePosts(w http.ResponseWriter, r *http.Request) {
 
 	posts.AuthorID = userID
 
-	if erro = posts.Prepare(); erro != nil{
-    		respostas.RespostaError(w, http.StatusInternalServerError, erro)
-    		return
+	if erro = posts.Prepare(); erro != nil {
+		respostas.RespostaError(w, http.StatusInternalServerError, erro)
+		return
 	}
 
 	db, erro := database.Connection()

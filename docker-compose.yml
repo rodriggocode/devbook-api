@@ -10,7 +10,24 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/18/data
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devbook_api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: devuser
+      DB_PASSWORD: devpass
+      DB_NAME: devbook
 
 volumes:
   db_data:

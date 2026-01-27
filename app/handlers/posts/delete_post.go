@@ -1,10 +1,10 @@
 package posts
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	repostiory "api-web/app/repository/posts"
-	"api-web/app/respostas"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	repostiory "devbook-api/app/repository/posts"
+	"devbook-api/app/respostas"
 	"errors"
 	"net/http"
 	"strconv"

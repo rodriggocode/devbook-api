@@ -1,10 +1,10 @@
 package users
 
 import (
-	"api-web/app/database"
-	"api-web/app/entity"
-	repository "api-web/app/repository/users"
-	"api-web/app/respostas"
+	"devbook-api/app/database"
+	"devbook-api/app/entity"
+	repository "devbook-api/app/repository/users"
+	"devbook-api/app/respostas"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"

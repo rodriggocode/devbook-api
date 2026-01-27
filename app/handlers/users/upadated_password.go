@@ -1,13 +1,13 @@
 package users
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	"api-web/app/entity"
-	rep "api-web/app/repository/users"
-	repository "api-web/app/repository/users"
-	"api-web/app/respostas"
-	"api-web/app/secret"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	"devbook-api/app/entity"
+	rep "devbook-api/app/repository/users"
+	repository "devbook-api/app/repository/users"
+	"devbook-api/app/respostas"
+	"devbook-api/app/secret"
 	"encoding/json"
 	"errors"
 	"io"

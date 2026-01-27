@@ -1,10 +1,10 @@
 package router
 
 import (
-	"api-web/app/handlers/login"
-	handlers "api-web/app/handlers/users"
-	"api-web/app/middlewares"
-	"api-web/app/router/routes"
+	"devbook-api/app/handlers/login"
+	handlers "devbook-api/app/handlers/users"
+	"devbook-api/app/middlewares"
+	"devbook-api/app/router/routes"
 	"net/http"
 )
 

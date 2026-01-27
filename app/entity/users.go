@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"api-web/app/secret"
+	"devbook-api/app/secret"
 	"errors"
 	"strings"
 	"time"

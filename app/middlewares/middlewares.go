@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"api-web/app/auth"
-	"api-web/app/respostas"
+	"devbook-api/app/auth"
+	"devbook-api/app/respostas"
 	"log"
 	"net/http"
 )

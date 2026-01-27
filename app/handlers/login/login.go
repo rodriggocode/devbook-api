@@ -1,12 +1,12 @@
 package login
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	"api-web/app/entity"
-	repository "api-web/app/repository/login"
-	"api-web/app/respostas"
-	"api-web/app/secret"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	"devbook-api/app/entity"
+	repository "devbook-api/app/repository/login"
+	"devbook-api/app/respostas"
+	"devbook-api/app/secret"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"

@@ -1,10 +1,10 @@
 package users
 
 import (
-	"api-web/app/auth"
-	"api-web/app/database"
-	repository "api-web/app/repository/users"
-	"api-web/app/respostas"
+	"devbook-api/app/auth"
+	"devbook-api/app/database"
+	repository "devbook-api/app/repository/users"
+	"devbook-api/app/respostas"
 	"errors"
 	"net/http"
 	"strconv"
