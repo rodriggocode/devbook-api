@@ -10,24 +10,27 @@ import (
 )
 
 var (
-	// string de conexao com o banco de dados
 	StringConnectDatabase = ""
-	// port api runing
+
 	Port = 0
 
-	//secret relacionado ao token de autorizacao jwt
-	// chave usada para assinar o token
 	SecretKey []byte
 )
 
-// vai carregar as variaveis de ambiente
 func LoadConfig() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Println("Aviso: .env não encontrado, usando variáveis de ambiente do Render")
 	}
 
-	Port, err = strconv.Atoi(os.Getenv("API_PORT"))
+	portStr := os.Getenv("PORT")
+	if portStr == "" {
+		portStr = os.Getenv("API_PORT")
+		if portStr == "" {
+			portStr = "9000"
+		}
+	}
+	Port, err = strconv.Atoi(portStr)
 	if err != nil {
 		Port = 9000
 	}
