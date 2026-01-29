@@ -45,7 +45,5 @@ func LoadConfig() {
 			)
 		}
 	
-		log.Printf("Usando string de conexão com o banco de dados: %s", StringConnectDatabase)
-	
-		SecretKey = []byte(os.Getenv("SECRET_KEY"))
-	}
+			SecretKey = []byte(os.Getenv("SECRET_KEY"))
+		}
