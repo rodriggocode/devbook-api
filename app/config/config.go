@@ -36,7 +36,7 @@ func LoadConfig() {
 	}
 	StringConnectDatabase = os.Getenv("DATABASE_URL")
 	if StringConnectDatabase == "" {
-		StringConnectDatabase = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		StringConnectDatabase = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
 			os.Getenv("DB_USER"),
 			os.Getenv("DB_PASSWORD"),
 			os.Getenv("DB_HOST"),
