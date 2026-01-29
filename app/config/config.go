@@ -34,16 +34,18 @@ func LoadConfig() {
 	if err != nil {
 		Port = 9000
 	}
-	StringConnectDatabase = os.Getenv("DATABASE_URL")
-	if StringConnectDatabase == "" {
-		StringConnectDatabase = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
-			os.Getenv("DB_USER"),
-			os.Getenv("DB_PASSWORD"),
-			os.Getenv("DB_HOST"),
-			os.Getenv("DB_PORT"),
-			os.Getenv("DB_NAME"),
-		)
+		StringConnectDatabase = os.Getenv("DATABASE_URL")
+		if StringConnectDatabase == "" {
+			StringConnectDatabase = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=require",
+				os.Getenv("DB_USER"),
+				os.Getenv("DB_PASSWORD"),
+				os.Getenv("DB_HOST"),
+				os.Getenv("DB_PORT"),
+				os.Getenv("DB_NAME"),
+			)
+		}
+	
+		log.Printf("Usando string de conexão com o banco de dados: %s", StringConnectDatabase)
+	
+		SecretKey = []byte(os.Getenv("SECRET_KEY"))
 	}
-
-	SecretKey = []byte(os.Getenv("SECRET_KEY"))
-}
