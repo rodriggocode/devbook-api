@@ -30,6 +30,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	db, erro := database.Connection()
 	if erro != nil {
 		respostas.RespostaError(w, http.StatusInternalServerError, erro)
+		return
 	}
 	defer db.Close()
 
