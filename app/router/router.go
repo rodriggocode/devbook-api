@@ -12,7 +12,7 @@ func Router() *http.ServeMux {
 	router := http.NewServeMux()
 
 	router.HandleFunc("/usuarios", middlewares.Authentication(handlers.GetUser))
-	router.HandleFunc("/usuarios/create", handlers.CreateUser)
+	router.HandleFunc("/create/user", handlers.CreateUser)
 	router.HandleFunc("/usuarios_id", middlewares.Authentication(handlers.GetIdUser))
 	router.HandleFunc("/usuarios/id_editar", middlewares.Authentication(handlers.UpdateUser))
 	router.HandleFunc("/usuario/excluir", middlewares.Authentication(handlers.DeleteUser))
