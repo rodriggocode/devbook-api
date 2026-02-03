@@ -27,12 +27,12 @@ func LoadConfig() {
 	if portStr == "" {
 		portStr = os.Getenv("API_PORT")
 		if portStr == "" {
-			portStr = "9000"
+			portStr = "10000"
 		}
 	}
 	Port, err = strconv.Atoi(portStr)
 	if err != nil {
-		Port = 9000
+		Port = 10000
 	}
 		StringConnectDatabase = os.Getenv("DATABASE_URL")
 		if StringConnectDatabase == "" {
