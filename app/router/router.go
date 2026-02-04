@@ -5,10 +5,17 @@ import (
 	handlers "devbook-api/app/handlers/users"
 	"devbook-api/app/middlewares"
 	"devbook-api/app/router/routes"
+	"github.com/rs/cors"
 	"net/http"
 )
 
-func Router() *http.ServeMux {
+// aqui foi adicionado o cors, por isso ta diferente
+func Router() http.Handler {
+
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:7000"},
+	})
+
 	router := http.NewServeMux()
 
 	router.HandleFunc("/usuarios", middlewares.Authentication(handlers.GetUser))
@@ -31,5 +38,6 @@ func Router() *http.ServeMux {
 	// para que nao fique tudo centralizado em um unico arquivo
 	routes.LoadPostRoutes(router)
 
-	return router
+	return c.Handler(router)
+
 }
