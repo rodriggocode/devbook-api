@@ -56,5 +56,3 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	respostas.JSON(w, http.StatusOK, entity.DateAuth{ID: userID, Toke: token})
 }
-
-//
