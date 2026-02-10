@@ -13,7 +13,7 @@ import (
 func Router() http.Handler {
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:7070"},
+		AllowedOrigins: []string{"http://localhost:7000"},
 	})
 
 	router := http.NewServeMux()
