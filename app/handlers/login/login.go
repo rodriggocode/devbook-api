@@ -8,13 +8,14 @@ import (
 	"devbook-api/app/respostas"
 	"devbook-api/app/secret"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
+	"strconv"
 )
 
 // login para autenticar o usuario
 func Login(w http.ResponseWriter, r *http.Request) {
-	body, erro := ioutil.ReadAll(r.Body)
+	body, erro := io.ReadAll(r.Body)
 	if erro != nil {
 		respostas.RespostaError(w, http.StatusUnprocessableEntity, erro)
 		return
@@ -50,5 +51,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		respostas.RespostaError(w, http.StatusInternalServerError, erro)
 		return
 	}
-	w.Write([]byte(token))
+
+	userID := strconv.FormatUint(userSaveDatabase.ID, 10)
+
+	respostas.JSON(w, http.StatusOK, entity.DateAuth{ID: userID, Toke: token})
 }
