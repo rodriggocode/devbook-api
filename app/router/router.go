@@ -13,7 +13,7 @@ import (
 func Router() http.Handler {
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:7070"},
+		AllowedOrigins:   []string{"https://webapp-snowy-flower-2545.fly.dev"},
 		AllowCredentials: true, // aqui e par o cookie
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
