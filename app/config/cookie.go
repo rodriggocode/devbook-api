@@ -1,0 +1,30 @@
+package config
+
+import (
+
+	"net/http"
+)
+
+func SetCookie(w http.ResponseWriter, token string) {
+	cookie := http.Cookie{
+		Name:     "access_token",
+		Value:    token,
+		MaxAge:   3600,
+		Path:     "/",
+		HttpOnly: true,
+		Secure:   true,
+		SameSite: http.SameSiteNoneMode,
+	}
+
+	http.SetCookie(w, &cookie)
+}
+
+// ler o cookie
+func ReadToken(req *http.Request) (string, error) {
+	cookie, err := req.Cookie("access_token")
+	if err != nil {
+		return "", err
+	}
+
+	return cookie.Value, nil
+}

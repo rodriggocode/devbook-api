@@ -2,6 +2,7 @@ package login
 
 import (
 	"devbook-api/app/auth"
+	cookie "devbook-api/app/config"
 	"devbook-api/app/database"
 	"devbook-api/app/entity"
 	repository "devbook-api/app/repository/login"
@@ -13,7 +14,6 @@ import (
 	"strconv"
 )
 
-// login para autenticar o usuario
 func Login(w http.ResponseWriter, r *http.Request) {
 	body, erro := io.ReadAll(r.Body)
 	if erro != nil {
@@ -54,5 +54,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	userID := strconv.FormatUint(userSaveDatabase.ID, 10)
 
-	respostas.JSON(w, http.StatusOK, entity.DateAuth{ID: userID, Toke: token})
+	cookie.SetCookie(w, token)
+	respostas.JSON(w, http.StatusOK, entity.DateAuth{
+		ID:   userID,
+		Toke: token,
+	})
 }
