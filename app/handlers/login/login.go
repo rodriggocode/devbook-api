@@ -15,6 +15,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	body, erro := io.ReadAll(r.Body)
 	if erro != nil {
 		respostas.RespostaError(w, http.StatusUnprocessableEntity, erro)
@@ -55,8 +56,10 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	userID := strconv.FormatUint(userSaveDatabase.ID, 10)
 
 	cookie.SetCookie(w, token)
-	respostas.JSON(w, http.StatusOK, entity.DateAuth{
-		ID:   userID,
-		Toke: token,
-	})
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(entity.DateAuth{
+    		ID:  userID,
+    		Toke:  token, 
+	}) 
+	
 }
