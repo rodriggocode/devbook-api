@@ -23,3 +23,5 @@
 	- ai eu vou testar atualizar, para saber se eu vou ter acesso a outros
 usuarios, o que nao e para acontecer. eu tenho que ter acesso so ao usuario que
 eu acabei de criar e somente a esse.
+
+## Usando CI/CD
