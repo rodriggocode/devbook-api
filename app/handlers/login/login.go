@@ -15,21 +15,8 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodOptions {
-		w.Header().Set("Access-Control-Allow-Origin", "https://webapp-snowy-flower-2545.fly.dev")
-		w.Header().Set("Access-Control-Allow-Credentials", "true")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-		w.Header().Set("Vary", "Origin") 
-		w.WriteHeader(http.StatusOK)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "https://webapp-snowy-flower-2545.fly.dev")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
+    w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Cache-Control", "no-store")
-	w.Header().Set("Vary", "Origin") 
 	body, erro := io.ReadAll(r.Body)
 	if erro != nil {
 		respostas.RespostaError(w, http.StatusUnprocessableEntity, erro)

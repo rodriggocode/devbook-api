@@ -1,0 +1,13 @@
+name: DevbookApi
+
+on:
+    push:
+        branches:["main"]
+jobs:
+    build_api:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              users: actions/checkout@v4
+            - name: install_go:
