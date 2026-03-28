@@ -6,8 +6,11 @@ import (
 	repository "devbook-api/app/repository/users"
 	"devbook-api/app/respostas"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/lib/pq"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -37,6 +40,10 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	repository := repository.NewUserRepository(db)
 	user.ID, erro = repository.CreateUser(user)
 	if erro != nil {
+		if pqErr, ok := erro.(*pq.Error); ok && pqErr.Code == "23505" {
+			respostas.RespostaError(w, http.StatusConflict, errors.New("Email ou nick ja cadastrado"))
+			return
+		}
 		respostas.RespostaError(w, http.StatusInternalServerError, erro)
 		return
 	}
