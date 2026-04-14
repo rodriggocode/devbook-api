@@ -18,7 +18,7 @@ func (repo *GetAllPostRepository) GetAllPosts(userID uint64) ([]entity.Posts, er
 		SELECT DISTINCT p.id_posts, p.title, p.content, p.author_id, p.like_posts, p.created_at, u.nick
 		FROM posts p
 		INNER JOIN users u ON u.id_user = p.author_id
-		INNER JOIN follows f ON p.author_id = f.user_id
+		LEFT JOIN follows f ON p.author_id = f.user_id
 		WHERE u.id_user = $1 OR f.follower_id = $1 ORDER BY 1`,
 		userID,
 	)
