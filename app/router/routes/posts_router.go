@@ -8,7 +8,7 @@ import (
 
 func LoadPostRoutes(router *http.ServeMux) {
 	router.HandleFunc("/publicacao/criar", middlewares.Authentication(handlers.CreatePosts))
-	router.HandleFunc("/publicacoes", middlewares.Authentication(handlers.GetAllPosts))
+	router.HandleFunc("/publicacoes/", middlewares.Authentication(handlers.GetAllPosts))
 	router.HandleFunc("/publicacao/{posts_id}/publicacao", middlewares.Authentication(handlers.GetIDPost))
 	router.HandleFunc("/publicacao/{posts_id}/editar", middlewares.Authentication(handlers.UpdatedPost))
 	router.HandleFunc("/publicacao/{posts_id}/excluir", middlewares.Authentication(handlers.DeletePost))
