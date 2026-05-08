@@ -14,6 +14,6 @@ func LoadPostRoutes(router *http.ServeMux) {
 	router.HandleFunc("DELETE /publicacao/{posts_id}/excluir", middlewares.Authentication(handlers.DeletePost))
 
 	router.HandleFunc("GET /publicacao/{user_id}/usuarios", middlewares.Authentication(handlers.GetAllPostsUser))
-	router.HandleFunc("GET /publicacoes/{posts_id}/curtir", middlewares.Authentication(handlers.LikePosts))
+	router.HandleFunc("POST /publicacoes/{posts_id}/curtir", middlewares.Authentication(handlers.LikePosts))
 	router.HandleFunc("POST /publicacao/{posts_id}/descurtir", middlewares.Authentication(handlers.Unliked))
 }
