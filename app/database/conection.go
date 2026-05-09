@@ -6,7 +6,6 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"log"
 )
 
 func Connection() (*sql.DB, error) {
@@ -16,12 +15,6 @@ func Connection() (*sql.DB, error) {
 	}
 
 	if err = conn.Ping(); err != nil {
-		conn.Close()
-		return nil, err
-	}
-
-	if err = conn.Ping(); err != nil {
-		log.Printf("Erro ao conectar ao banco: %v", err)
 		conn.Close()
 		return nil, err
 	}
